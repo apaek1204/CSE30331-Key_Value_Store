@@ -1,0 +1,8 @@
+*.o
+*.swp
+*.dSYM
+*.txt
+*~
+map_bench
+map_test
+frequencies
