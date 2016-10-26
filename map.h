@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 
 // Type definitions ------------------------------------------------------------
 
@@ -48,7 +49,7 @@ public:
             const Entry     search(const std::string &key);
             void            dump(std::ostream &os, DumpFlag flag);
 private:
-            std::vector< Entry > entries;
+            std::vector<Entry> entries;
 };
 
 class SortedMap : public Map {
@@ -57,7 +58,7 @@ public:
             const Entry     search(const std::string &key);
             void            dump(std::ostream &os, DumpFlag flag);
 private:
-        std::vector< Entry > entries;
+        std::vector<Entry> entries;
 };
 
 class BSTMap : public Map {
@@ -74,6 +75,7 @@ public:
             const Entry     search(const std::string &key);
             void            dump(std::ostream &os, DumpFlag flag);
 private:
+        std::map<std::string, std::string> entries;
 };
 
 class TreapMap : public Map {
@@ -82,6 +84,7 @@ public:
             const Entry     search(const std::string &key);
             void            dump(std::ostream &os, DumpFlag flag);
 private:
+            Node* head;
 };
 
 // vim: set sts=4 sw=4 ts=8 expandtab ft=cpp:

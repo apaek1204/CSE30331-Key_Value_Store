@@ -24,10 +24,27 @@ void            SortedMap::insert(const std::string &key, const std::string &val
 }
 
 const Entry     SortedMap::search(const std::string &key) {
-    return NONE;
+    return binary_search(entries.begin(), entries.end(), key);
 }
 
 void            SortedMap::dump(std::ostream &os, DumpFlag flag) {
+    for(auto it=entries.begin(); it!=entries.end(); ++it){
+        switch(flag){
+            case DUMP_KEY:
+                os << it->first;
+                break;
+            case DUMP_VALUE:
+                os << it->second;
+                break;
+            case DUMP_KEY_VALUE:
+                os << it->first << "\t\t" << it->second;
+                break;
+            case DUMP_VALUE_KEY:
+                os << it->second << "\t\t" << it->first;
+                break;
+        }
+        os << std::endl;
+    }
 }
 
 // Internal Functions ----------------------------------------------------------

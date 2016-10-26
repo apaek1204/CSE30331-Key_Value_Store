@@ -19,14 +19,18 @@ const Entry     UnsortedMap::search(const std::string &key) {
 
 void            UnsortedMap::dump(std::ostream &os, DumpFlag flag) {
     for(auto it = entries.begin(); it!=entries.end(); ++it){
-        if(flag == DUMP_KEY || flag == DUMP_KEY_VALUE){
-            os << it->first;
-        }
-        if(flag == DUMP_VALUE || flag == DUMP_KEY_VALUE || flag == DUMP_VALUE_KEY){
-            os << "     " << it->second;
-        }
-        if(flag == DUMP_VALUE_KEY){
-            os << "     " << it->first;
+        switch(flag){
+            case DUMP_KEY:
+                os << it->first;
+                break;
+            case DUMP_VALUE:
+                os << it->second;
+                break;
+            case DUMP_KEY_VALUE:
+                os << it->first << "\t\t" << it->second;
+            case DUMP_VALUE_KEY:
+                os << it->second << "\t\t" << it->first;
+                break;
         }
         os << std::endl;
     }

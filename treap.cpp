@@ -41,7 +41,10 @@ Node *rotate_left(Node *p) {
 }
 
 int get_random() {
-    return 0;
+    std::random_device rd;
+    std::default_random_engine g(rd());
+    std::uniform_int_distribution<> d(1, INT_MAX);
+    return d(g);
 }
 
 // vim: set sts=4 sw=4 ts=8 expandtab ft=cpp:
