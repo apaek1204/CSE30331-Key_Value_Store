@@ -1,16 +1,26 @@
 // unsorted.cpp: Unsorted Map
 
 #include "map.h"
+#include <iostream>
 
 // Methods --------------------------------------------------------------------
 
 void            UnsortedMap::insert(const std::string &key, const std::string &value) {
-    entries.push_back(make_pair(key, value));
+    for(auto it = entries.begin(); it!=entries.end(); ++it){
+        //key already exists, update value
+        if(it->first == key){
+            it->second = value;
+            break;
+            return;
+        }
+    }
+    //key doesn't exist, make a new one
+    entries.push_back( Entry(key, value) );
 }
 
 const Entry     UnsortedMap::search(const std::string &key) {
     for(auto it = entries.begin(); it!=entries.end(); ++it){
-        if(it->first == key){
+        if( it->first== key ){
             return *it;
         }
     }
