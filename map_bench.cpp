@@ -53,6 +53,15 @@ void parse_options(int argc, char *argv[], Map *&map, int &nItems, int &padLengt
     }
 }
 
+std::string int_to_key(int i, size_t padlength){
+    std::string temp = std::to_string(i);
+    std::string pad="";
+    for(size_t j=0; j<(padlength-temp.length()); j++){
+        pad+="0";
+    }
+    return pad+temp;
+}
+
 // Main execution --------------------------------------------------------------
 
 int main(int argc, char *argv[]) {
