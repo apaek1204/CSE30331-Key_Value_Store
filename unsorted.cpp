@@ -1,7 +1,6 @@
 // unsorted.cpp: Unsorted Map
 
 #include "map.h"
-#include <iostream>
 
 // Methods --------------------------------------------------------------------
 

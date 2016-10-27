@@ -4,6 +4,8 @@
 #include <iterator>
 #include <cmath>
 #include <algorithm>
+#include <iostream>
+#include <cstring>
 
 // Type Definitions ------------------------------------------------------------
 
@@ -16,11 +18,29 @@ const Entry     binary_search(const IT &start, const IT &end, const std::string 
 // Methods ---------------------------------------------------------------------
 
 void            SortedMap::insert(const std::string &key, const std::string &value) {
-    for(IT it=entries.begin(); it!=entries.end(); ++it){
-        if(key >= it->first){
-            entries.insert(it, make_pair(key, value));
+    IT it;
+    for(it=entries.begin(); it!=entries.end() ; ++it){
+        //if key exists, update value
+        if(it->first == key){
+            std::cout << "updating " << it->second << " to " << value << std::endl;
+            it->second = value;
+            return;
+        }
+        else if(value > it->first){
+            std::cout<<"else if called"<<std::endl;
+            entries.insert(it, Entry(key, value));
+            //break;
+            return;
         }
     }
+/*    if(it != entries.end()){
+        std::cout << "inserting "<< key<< " " << value<<" in middle" << std::endl;
+        entries.insert(it, Entry(key, value));
+    }
+    else{*/
+        std::cout << "push back" << std::endl;
+        entries.push_back(Entry(key, value));
+    //}
 }
 
 const Entry     SortedMap::search(const std::string &key) {
@@ -49,18 +69,20 @@ void            SortedMap::dump(std::ostream &os, DumpFlag flag) {
 
 // Internal Functions ----------------------------------------------------------
 
-bool compareKey(const Entry &one, const Entry &two){
-    return one.first <= two.first;
-}
-
 const Entry   binary_search(const IT &start, const IT &end, const std::string &target) {
-    IT low = lower_bound(start, end, Entry(target, 0), compareKey);
-    if( low->first == target){
-        return *low;
+    //copy consts
+    IT Start = start;
+    IT End = end;
+    while(Start < End){
+        auto length = End - Start;
+        auto Middle = length/2;
+        auto midpoint = *(Start+Middle);
+        if(target < midpoint.first){ End = Start + Middle; }
+        else if(target > midpoint.first){ Start = Start+Middle+1; }
+        else{ return midpoint; }
     }
-    else{
-        return NONE;
-    }
+    std::cout<<"not found"<<std::endl;
+    return NONE;
 }
 
 // vim: set sts=4 sw=4 ts=8 expandtab ft=cpp:

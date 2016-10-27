@@ -68,7 +68,6 @@ int main(int argc, char *argv[]) {
 	std::string s = std::to_string(i);
     	map->insert(s, s);
     }
-
     // Search 1 - N
     for (int i = 0; i < N; i++) {
 	std::string s = std::to_string(i);
@@ -87,6 +86,7 @@ int main(int argc, char *argv[]) {
 	std::string k = std::to_string(i);
 	std::string v = std::to_string(i*2);
 	auto result   = map->search(k);
+
 	assert(result != NONE && result.second == v);
     }
 
