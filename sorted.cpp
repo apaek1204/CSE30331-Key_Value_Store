@@ -29,6 +29,15 @@ void            SortedMap::insert(const std::string &key, const std::string &val
             return;
         }
     }
+
+    IT test = entries.end()-1;
+    for(auto t=entries.rbegin(); t!=entries.rend(); ++t){
+        test--;
+        if(key < t->first){
+            entries.insert(++test, Entry(key, value));
+        }
+    }
+
 }
 
 const Entry     SortedMap::search(const std::string &key) {
