@@ -9,7 +9,6 @@ void            UnsortedMap::insert(const std::string &key, const std::string &v
         //key already exists, update value
         if(it->first == key){
             it->second = value;
-            break;
             return;
         }
     }
@@ -37,6 +36,7 @@ void            UnsortedMap::dump(std::ostream &os, DumpFlag flag) {
                 break;
             case DUMP_KEY_VALUE:
                 os << it->first << "\t\t" << it->second;
+                break;
             case DUMP_VALUE_KEY:
                 os << it->second << "\t\t" << it->first;
                 break;

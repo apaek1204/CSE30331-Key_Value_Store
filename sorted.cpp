@@ -42,7 +42,6 @@ void            SortedMap::insert(const std::string &key, const std::string &val
 
 const Entry     SortedMap::search(const std::string &key) {
     for(auto it=entries.begin(); it!=entries.end(); ++it){
-        std::cout << it->first << " ";
     }
     std::cout<<std::endl;
     return binary_search(entries.begin(), entries.end(), key);
