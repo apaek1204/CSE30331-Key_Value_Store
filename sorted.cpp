@@ -17,30 +17,51 @@ const Entry     binary_search(const IT &start, const IT &end, const std::string 
 
 // Methods ---------------------------------------------------------------------
 
+bool compar(const Entry &one, const Entry &two){
+    return one.first < two.first;
+}
+
 void            SortedMap::insert(const std::string &key, const std::string &value) {
     IT it;
     for(it=entries.begin(); it!=entries.end() ; ++it){
+     //   std::cout<< it->first << ", ";
         //if key exists, update value
         if(it->first == key){
-            std::cout << "updating " << it->second << " to " << value << std::endl;
+            std::cout<<"updating\n";
+            //std::cout << "updating " << it->second << " to " << value << std::endl;
             it->second = value;
-            return;
-        }
-        else if(value > it->first){
-            std::cout<<"else if called"<<std::endl;
-            entries.insert(it, Entry(key, value));
-            //break;
+            //std::cout<< it->first << " " << it->second <<std::endl;
             return;
         }
     }
-/*    if(it != entries.end()){
-        std::cout << "inserting "<< key<< " " << value<<" in middle" << std::endl;
-        entries.insert(it, Entry(key, value));
+
+    //IT test = entries.end()-1;
+
+    IT test = std::lower_bound( entries.begin(), entries.end(), key, compar);
+    entries.insert(test, Entry(key, value));
+    
+    for(auto b = entries.begin(); b!=entries.end(); ++b){
+        std::cout << b->first << " ";
     }
-    else{*/
-        std::cout << "push back" << std::endl;
-        entries.push_back(Entry(key, value));
-    //}
+    std::cout<<std::endl;
+
+/*    for(IT its=(entries.end()-1); its>=entries.begin(); --its){
+        std::cout<<"hey"<<std::endl;
+        test--;
+        if(key < its->first){
+            entries.insert(its, Entry(key, value));
+            for(auto blah = entries.begin(); blah!=entries.end(); ++blah){
+                std::cout << blah->first << " ";
+            }
+            std::cout<<std::endl;
+            return;
+        }
+        else{
+        }
+    }*/
+
+ //       entries.push_back(Entry(key, value));
+  //  std::cout << key << " " << std::endl;
 }
 
 const Entry     SortedMap::search(const std::string &key) {
@@ -81,7 +102,6 @@ const Entry   binary_search(const IT &start, const IT &end, const std::string &t
         else if(target > midpoint.first){ Start = Start+Middle+1; }
         else{ return midpoint; }
     }
-    std::cout<<"not found"<<std::endl;
     return NONE;
 }
 
