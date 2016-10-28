@@ -13,6 +13,7 @@ extern void    dump_r(Node *node, std::ostream &os, DumpFlag flag);
 static Node *rotate_right(Node *p);
 static Node *rotate_left(Node *p);
 static int get_random();
+void erase(Node* c);
 
 // Methods ---------------------------------------------------------------------
 
@@ -33,6 +34,10 @@ const Entry     TreapMap::search(const std::string &key) {
 
 void            TreapMap::dump(std::ostream &os, DumpFlag flag) {
 
+}
+
+TreapMap::~TreapMap(){
+    erase(head);
 }
 
 // Internal Functions ----------------------------------------------------------
@@ -82,6 +87,13 @@ int get_random() {
     std::default_random_engine g(rd());
     std::uniform_int_distribution<> d(1, INT_MAX);
     return d(g);
+}
+
+void erase(Node* curr){
+    if(!curr){return;}
+    erase(curr->left);
+    erase(curr->right);
+    delete curr;
 }
 
 // vim: set sts=4 sw=4 ts=8 expandtab ft=cpp:

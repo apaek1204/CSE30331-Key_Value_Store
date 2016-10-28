@@ -85,6 +85,8 @@ private:
 
 class TreapMap : public Map {
 public:
+            TreapMap(): head(nullptr) {};
+            ~TreapMap();
             void            insert(const std::string &key, const std::string &value);
             const Entry     search(const std::string &key);
             void            dump(std::ostream &os, DumpFlag flag);
