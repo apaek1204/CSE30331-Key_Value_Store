@@ -63,10 +63,15 @@ private:
 
 class BSTMap : public Map {
 public:
+            BSTMap();
+            ~BSTMap();
+            void erase(Node *);
             void            insert(const std::string &key, const std::string &value);
             const Entry     search(const std::string &key);
             void            dump(std::ostream &os, DumpFlag flag);
+            
 private:
+    Node* root;
 };
 
 class RBTreeMap : public Map {
