@@ -10,14 +10,14 @@ store].
 
 
 
-1. |Backend|Insert|---|---|Search|---|---|
-|---|Best|Avg|Worst|Best|Avg|Worst|
+1. | Backend | Insert | --- | --- | Search | ---| --- |
+| --- | Best | Avg | Worst | Best | Avg | Worst |
 |---|---|---|---|---|---|---|
-|Unsorted|O(1)|O(n)|O(n)|O(1)|O(n)|O(n)|
-|Sorted|O(1)|O(n)|O(n)|O(1)|O(n)|O(n)|
-|BST|O(1)|O(logn)|O(n)|O(1)|O(logn)|O(n)|
-|RBTree|O(1)|O(logn)|O(logn)|O(1)|O(logn)|O(logn)|
-|Treap|O(1)|O(logn)|O(n)|O(1)|O(logn)|O(n)|
+| Unsorted | O(1) | O(n) | O(n) | O(1) | O(n) | O(n) |
+| Sorted | O(1) | O(n) | O(n) | O(1) | O(n) | O(n) |
+| BST | O(1) | O(logn) | O(n) | O(1) | O(logn) | O(n) |
+| RBTree | O(1) | O(logn) | O(logn) | O(1) | O(logn) | O(logn) |
+| Treap | O(1) | O(logn) | O(n) | O(1) | O(logn) | O(n) |
 
 
 
