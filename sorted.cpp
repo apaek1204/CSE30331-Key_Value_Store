@@ -22,28 +22,26 @@ void            SortedMap::insert(const std::string &key, const std::string &val
         entries.push_back(Entry(key, value));
         return;
     }
-    for(IT it=entries.begin(); it!=entries.end() ; ++it){
-        //if key exists, update value
-        if(it->first == key){
-            it->second = value;
+
+    auto t=entries.begin();
+    for(t=entries.begin(); t!=entries.end(); ++t){
+        if(key < t->first){
+            entries.insert(t, Entry(key, value));
+            return;
+        }
+        else if(key == t->first){
+            t->second = value;
             return;
         }
     }
 
-    IT test = entries.end()-1;
-    for(auto t=entries.rbegin(); t!=entries.rend(); ++t){
-        test--;
-        if(key < t->first){
-            entries.insert(++test, Entry(key, value));
-        }
+    if(t==entries.end()){
+        entries.push_back(Entry(key, value));
     }
 
 }
 
 const Entry     SortedMap::search(const std::string &key) {
-    for(auto it=entries.begin(); it!=entries.end(); ++it){
-    }
-    std::cout<<std::endl;
     return binary_search(entries.begin(), entries.end(), key);
 }
 
