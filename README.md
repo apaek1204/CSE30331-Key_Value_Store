@@ -10,6 +10,7 @@ store].
 
 1. 
 
+
 |Backend|Insert|---|---|Search|---|---|
 |---|Best|Avg|Worst|Best|Avg|Worst|
 |---|---|---|---|---|---|---|
@@ -18,6 +19,7 @@ store].
 |BST|O(1)|O(logn)|O(n)|O(1)|O(logn)|O(n)|
 |RBTree|O(1)|O(logn)|O(logn)|O(1)|O(logn)|O(logn)|
 |Treap|O(1)|O(logn)|O(n)|O(1)|O(logn)|O(n)|
+
 
     All insert best case complexities are O(1) because the data structure could be empty before the insert, leading to only a check to see if the datastructure is empty before inserting. Similarly, all search best case complexities are O(1) because the element being searched for could be the first element.
 
