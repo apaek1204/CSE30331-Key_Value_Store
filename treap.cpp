@@ -18,13 +18,21 @@ static int get_random();
 
 void            TreapMap::insert(const std::string &key, const std::string &value) {
     head = insert_r(head, key, value);
+
 }
 
 const Entry     TreapMap::search(const std::string &key) {
-    return NONE;
+    Node *a = search_r(head, key);
+    if(a){
+        return a->entry;
+    }
+    else{
+        return NONE;
+    }
 }
 
 void            TreapMap::dump(std::ostream &os, DumpFlag flag) {
+
 }
 
 // Internal Functions ----------------------------------------------------------
@@ -33,20 +41,23 @@ Node *insert_r(Node *node, const std::string &key, const std::string &value) {
     if(node==nullptr){
         node = new Node{Entry(key, value), get_random(), nullptr, nullptr};
     }
-
-    if(key <= (node->entry).first){
-        node->left = insert_r(node->left, key, value);
-        if(node->left->priority > node->priority){
-            node = rotate_right(node);
-        }
-    }
     else{
-        node->right = insert_r(node->right, key, value);
-        if(node->right->priority > node->priority){
-            node = rotate_left(node);
+        if(key < (node->entry).first){
+            node->left = insert_r(node->left, key, value);
+            if(node->left->priority > node->priority){
+                node = rotate_right(node);
+            }
+        }
+        else if(key == node->entry.first){
+            node->entry.second = value;
+        }
+        else{
+            node->right = insert_r(node->right, key, value);
+            if(node->right->priority > node->priority){
+                node = rotate_left(node);
+            }
         }
     }
-
     return node;
 }
 
